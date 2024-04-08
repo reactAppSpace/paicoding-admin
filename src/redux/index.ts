@@ -1,7 +1,7 @@
 /* eslint-disable simple-import-sort/imports */
 /* eslint-disable prettier/prettier */
 import { Action, combineReducers, compose, legacy_createStore as createStore, Store } from "redux";
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { applyMiddleware } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -15,7 +15,7 @@ import global from "./modules/global/reducer";
 import menu from "./modules/menu/reducer";
 import tabs from "./modules/tabs/reducer";
 
-// 创建reducer(拆分reducer)
+//combineReducers 将多个小的reducer组合成一个更大的reducer
 const reducer = combineReducers({
 	global,
 	menu,
@@ -27,12 +27,7 @@ const reducer = combineReducers({
 
 export type RootState = ReturnType<typeof reducer>;
 // 定义自定义的 thunk action 类型
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
 
 // 定义自定义的 dispatch 类型
 export type AppDispatch = ThunkDispatch<RootState, unknown, Action<string>>;
@@ -45,9 +40,11 @@ const persistConfig = {
 const persistReducerConfig = persistReducer(persistConfig, reducer);
 
 // 开启 redux-devtools
+// compose 用于将多个 store enhancer组合成一个store enhancer
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // 使用 redux 中间件
+//applyMiddleware 将多个中间件组合成一个 store enhancer
 const middleWares = applyMiddleware(reduxThunk, reduxPromise);
 
 // 创建 store
