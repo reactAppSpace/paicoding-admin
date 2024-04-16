@@ -24,7 +24,10 @@ const dictTransform = (dict = {}, keys = ["id", "title"]) => {
 // * redux-thunk
 // 获取字典数据
 // 异步 action creator
+//异步action creator返回的就是一个函数，这个函数接受redux store dispatch方法作为参数
+//并在函数内部，手动调用dispatch，分发同步action
 export const getDiscListAction = () => {
+	//thunk 函数 <==> AsyncAction(异步action)
 	return async (dispatch: Dispatch) => {
 		const { result } = (await getDiscListApi()) || {};
 		console.log("获取字典，getDiscListAction");
