@@ -45,10 +45,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // 使用 redux 中间件
 //applyMiddleware 将多个中间件组合成一个 store enhancer
-const middleWares = applyMiddleware(reduxThunk, reduxPromise);
+// 使用中间件得目的主要是为了扩展store得dispatch方法
+const middleWaresFn = applyMiddleware(reduxThunk, reduxPromise);
 
 // 创建 store
-const store: Store = createStore(persistReducerConfig, composeEnhancers(middleWares));
+const store: Store = createStore(persistReducerConfig, composeEnhancers(middleWaresFn));
 
 // 创建持久化 store
 const persistor = persistStore(store);
