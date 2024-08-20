@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
-import logo from "@/assets/images/logo.svg";
-import logoMd from "@/assets/images/logo_md.png";
+import logo from "@/assets/images/lk_logo.png";
+import logoMd from "@/assets/images/lk_logo_md.png";
 const Logo = (props: any) => {
 	const { isCollapse } = props;
 	return (

@@ -1,8 +1,8 @@
+/* eslint-disable simple-import-sort/imports */
 import loginLeft from "@/assets/images/login_left.png";
-import logo from "@/assets/images/logo.svg";
+import logo from "@/assets/images/lk_logo.png";
 import SwitchDark from "@/components/SwitchDark";
 import LoginForm from "./components/LoginForm";
-
 import "./index.less";
 
 const Login = () => {
